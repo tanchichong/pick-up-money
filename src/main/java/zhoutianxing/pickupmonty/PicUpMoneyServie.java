@@ -1,6 +1,8 @@
 package zhoutianxing.pickupmonty;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author zhoutianxing
@@ -35,7 +37,7 @@ public class PicUpMoneyServie {
                         e.printStackTrace();
                     }
                 } else {
-                    System.out.println("钱包空空");
+                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " 钱包空空");
                 }
             }
         }
