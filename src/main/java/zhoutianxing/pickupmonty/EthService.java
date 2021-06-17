@@ -1,6 +1,5 @@
 package zhoutianxing.pickupmonty;
 
-import org.springframework.stereotype.Service;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.RawTransaction;
@@ -9,7 +8,6 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
-import org.web3j.protocol.core.methods.response.Log;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Numeric;
 
@@ -21,12 +19,54 @@ import java.util.concurrent.ExecutionException;
  * @author zhoutianxing
  */
 public class EthService {
-    private static final String INFURA_URL = "https://mainnet.infura.io/v3/f0c42246a97b4f0086dfc9ec92dddf17";
+    private static EthService ethService1 = new EthService("https://mainnet.infura.io/v3/f0c42246a97b4f0086dfc9ec92dddf17");
+    private static EthService ethService2 = new EthService("https://mainnet.infura.io/v3/566a88e392c74fa995afb271acda7a26");
+    private static EthService ethService3 = new EthService("https://mainnet.infura.io/v3/b48b789fcf1f43c6b53785e86648fa31");
+    private static EthService ethService4 = new EthService("https://mainnet.infura.io/v3/4f3ce2c1a14349c182c826ca3833d542");
+    private static EthService ethService5 = new EthService("https://mainnet.infura.io/v3/c0c2cf08e717493d994fa58eec05bf92");
+    private static EthService ethService6 = new EthService("https://mainnet.infura.io/v3/c0a18b88537b4eae9f81623182ef948a");
+    private static EthService ethService7 = new EthService("https://mainnet.infura.io/v3/0e5df4a46aad4c41af7866d508b86b10");
+    private static EthService ethService8 = new EthService("https://mainnet.infura.io/v3/78bcb3e6442f4639b8265a9e31919da5");
+    private static EthService ethService9 = new EthService("https://mainnet.infura.io/v3/2c2486bf71974903a5200d7f9af4c944");
+    private static EthService ethService10 = new EthService("https://mainnet.infura.io/v3/024c8de522c34e21939f31a1c164e136");
+    private static EthService ethService11 = new EthService("https://mainnet.infura.io/v3/f6b8f6222b914fd6b8f7463017fbd415");
+    private static EthService ethService12 = new EthService("https://mainnet.infura.io/v3/011f9db12a1d480fbf5fc93117380c01");
 
-    private static Web3j web3j;
+    private Web3j web3j;
+    private EthService(String url) {
+        web3j = Web3j.build(new HttpService(url));
+    }
 
-    public EthService() {
-        web3j = Web3j.build(new HttpService(INFURA_URL));
+    public static EthService getInstance(int hour) {
+        EthService ethService = null;
+        switch (hour) {
+            case 1: ethService = ethService1;break;
+            case 2: ethService = ethService2;break;
+            case 3: ethService = ethService3;break;
+            case 4: ethService = ethService4;break;
+            case 5: ethService = ethService5;break;
+            case 6: ethService = ethService6;break;
+            case 7: ethService = ethService7;break;
+            case 8: ethService = ethService8;break;
+            case 9: ethService = ethService9;break;
+            case 10: ethService = ethService10;break;
+            case 11: ethService = ethService11;break;
+            case 12: ethService = ethService12;break;
+            case 13: ethService = ethService1;break;
+            case 14: ethService = ethService2;break;
+            case 15: ethService = ethService3;break;
+            case 16: ethService = ethService4;break;
+            case 17: ethService = ethService5;break;
+            case 18: ethService = ethService6;break;
+            case 19: ethService = ethService7;break;
+            case 20: ethService = ethService8;break;
+            case 21: ethService = ethService9;break;
+            case 22: ethService = ethService10;break;
+            case 23: ethService = ethService11;break;
+            case 0: ethService = ethService12;break;
+            default:break;
+        }
+        return ethService;
     }
 
     /**
