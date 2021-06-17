@@ -1,5 +1,6 @@
 package zhoutianxing.pickupmonty;
 
+import java.io.File;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,16 +39,16 @@ public class PicUpMoneyServie {
                 BigInteger balance = ethService.getEthBanlance(fromAddress);
                 if (balance.compareTo(gas) > 0) {
                     BigInteger pickUpMoney = balance.subtract(gas);
-                    System.out.println(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " 开始捡钱，应该能从:" + fromAddress + " 捡到：" + pickUpMoney);
+                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " 开始捡钱，应该能从:" + fromAddress + " 捡到：" + pickUpMoney);
                     try {
                         ethService.transfer(fromAddress, myPocketAddress, pickUpMoney, priKey, gasPrice, gasLimit, null);
+                        File file = new File("/root/ant-spider/temp/" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+                        file.createNewFile();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
-                    if (now.getSecond() == 0) {
-                        System.out.println(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " 钱包空空");
-                    }
+                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + " 钱包空空");
                 }
             });
         }
